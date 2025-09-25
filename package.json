@@ -1,0 +1,12 @@
+{
+  "name": "nodejsapp",
+  "version": "1.0.0",
+  "description": "Simple Hello World Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Medium Member",
+  "license": "ISC"
+}
+
