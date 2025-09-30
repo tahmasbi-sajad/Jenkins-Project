@@ -23,7 +23,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Running tests (if any)"
-                // در اینجا می‌توانی npm test اضافه کنی
             }
         }
 
