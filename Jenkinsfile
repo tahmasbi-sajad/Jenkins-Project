@@ -1,26 +1,43 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKER_IMAGE = "nodejsapp:latest"
+    }
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo "Building the Node.js app"
-                sh 'npm install'
+                echo "Checking out source code from Git"
+                checkout scm
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "Building Docker image from Dockerfile"
+                sh 'docker build -t $DOCKER_IMAGE .'
+            }
+        }
+
         stage('Test') {
             steps {
                 echo "Running tests (if any)"
+                // در اینجا می‌توانی npm test اضافه کنی
             }
         }
+
         stage('Deploy') {
             when {
-                branch 'main'
+                branch 'master'
             }
             steps {
-                echo "Deploying the app"
+                echo "Deploying the Docker container"
+                sh 'docker run -d -p 3000:3000 $DOCKER_IMAGE'
             }
         }
     }
+
     post {
         success {
             mail to: 'tahmasbi.sajad92@gmail.com',
@@ -34,3 +51,4 @@ pipeline {
         }
     }
 }
+
