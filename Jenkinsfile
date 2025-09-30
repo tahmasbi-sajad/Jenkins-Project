@@ -18,7 +18,6 @@ pipeline {
             }
             steps {
                 echo "Deploying the app"
-                // دستور دپلوی واقعی مثل Docker Push یا K8s Apply
             }
         }
     }
